@@ -2,11 +2,16 @@
 const form = document.getElementById("todoform");
 const todoInput = document.getElementById("newtodo");
 const todoListElement = document.getElementById("todos-list");
+const notEle = document.querySelector("notification");
 
 
 // variable
-let todos = [];
+//local storge last entries come from this code
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 let EditTodoId = -1;
+
+//1st render
+renderTodos();
 
 // Form submit
 form.addEventListener('submit', function (event) {
@@ -14,6 +19,8 @@ form.addEventListener('submit', function (event) {
   
     saveTodo();
     renderTodos();
+    //Local storage add
+    localStorage.setItem("todos", JSON.stringify(todos))
 });
 
 // Save todo function
@@ -28,9 +35,9 @@ function saveTodo(){
     const isDuplicate = todos.some((todo) => todo.value.toUpperCase === todoValue.toLowerCase);
 
     if(isEmpty){
-        alert("Todo's input is empty");
+        showNotification("Todo's input is empty");
     } else if (isDuplicate) {
-        alert("Todo already exists!");
+        showNotification("Todo already exists!");
     } else {
         if (EditTodoId >= 0) {
             //update the edit todo
@@ -54,6 +61,10 @@ function saveTodo(){
 
 // Render todo function
 function renderTodos (){
+    if (todos.length === 0) {
+        todoListElement.innerHTML = "<center>Nothing to do!</center>";
+        return;
+    }
 
     // clear element before re-render
     todoListElement.innerHTML = "";
@@ -66,7 +77,7 @@ function renderTodos (){
             style="color : ${todo.color}"
             data-action="check"
         ></i>
-        <p class="" data-action="check">${todo.value}</p>
+        <p class="${todo.checked ? "checked" : ""}" data-action="check">${todo.value}</p>
         <i class="bi bi-pencil-square" data-action="edit"></i>
         <i class="bi bi-trash3" data-action="delete"></i>
       </div>
@@ -102,6 +113,7 @@ function checkTodo(todoId) {
         checked: index === todoId ? !todo.checked : todo.checked,
     }));
     renderTodos();
+    localStorage.setItem("todos", JSON.stringify(todos))
 
 };
 
@@ -118,4 +130,19 @@ function deleteTodo(todoId) {
 
     //re-render
     renderTodos();
+    localStorage.setItem("todos", JSON.stringify(todos))
 };
+
+// show a notification alert
+function showNotification(msg) {
+    // change the message
+    notEle.innerHTML = msg;
+  
+    // notification enter
+    notEle.classList.add('notif-enter');
+  
+    // notification dissapear code 2000ms
+    setTimeout(() => {
+        notEle.classList.remove('notif-enter');
+    }, 2000);
+}
