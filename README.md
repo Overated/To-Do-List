@@ -56,3 +56,23 @@
 <div width="100%" align="center">
 <a title="Empty"><img height="auto" width="765" src="https://raw.githubusercontent.com/Overated/To-Do-List/main/css/img/ReadMe%20images/3.png" />
 </div>
+<br/>
+<br/>
+
+## _Listede bulunan maddeleri düzenlemek için Mavi edit buttonuna veya silmek isterseniz kırmızı delete buttonuna tıklayarak işlem yapabilirsiniz._
+
+---
+
+<br/>
+<br/>
+
+<div width="100%" align="center">
+    <p align="center">
+    <img alt="ViewCount" src=https://visitor-badge.glitch.me/badge?page_id=Overated&left_color=grey&right_color=green />
+</p>
+
+<p align="center">
+    <a href="https://www.buymeacoffee.com/faertek1236" target="_blank">
+      <img width="30%" alt="Buy me a coffee" src="https://raw.githubusercontent.com/Overated/Fae/master/images/buymecoffee.png"/>
+    </a>
+</p>
