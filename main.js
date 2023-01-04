@@ -56,7 +56,7 @@ function saveTodo() {
 // Render todo
 function renderTodos() {
   if (todos.length === 0) {
-    todosListEl.innerHTML = '<center>Nothing to do!</center>';
+    todosListEl.innerHTML = '<center>Nothing to do! Please add something to do :)</center>';
     return;
   }
 
